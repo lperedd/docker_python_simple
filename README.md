@@ -42,3 +42,8 @@ Step 4: Access you nodejs application UI from browser
     
 
     https://www.youtube.com/watch?v=SXwC9fSwct8&ab_channel=TechWorldwithNana
+
+
+git add .
+git commit -m 'hi'
+git push
