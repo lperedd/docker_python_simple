@@ -5,9 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./home/app:/home/app
+      - ./home/app
     ports:
-      - "3000:3000"
+      - "3028:3000"
     environment:
       - MONGO_DB_USERNAME=admin
       - MONGO_DB_PWD=password
