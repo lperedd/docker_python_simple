@@ -1,30 +1,33 @@
 version: '3'
 services:
   my-app:
-    # build: .
-    image: docker-hub-user/image-name:image-tag
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./home/app:/home/app
     ports:
-     - 3000:3000
+      - "3000:3000"
     environment:
-     - MONGO_DB_USERNAME=admin
-     - MONGO_DB_PWD=password
+      - MONGO_DB_USERNAME=admin
+      - MONGO_DB_PWD=password
+    depends_on:
+      - mongodb
   mongodb:
     image: mongo
     ports:
-     - 27017:27017
+      - "27017:27017"
     environment:
-     - MONGO_INITDB_ROOT_USERNAME=admin
-     - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
   mongo-express:
     image: mongo-express
     restart: always
     ports:
-     - 8081:8081
+      - "8081:8081"
     environment:
-     - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-     - ME_CONFIG_MONGODB_ADMINPASSWORD=passwords
-     - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
     depends_on:
-     - "mongodb"
-
-     #variables    - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_ADMIN_USER}
+      - mongodb
